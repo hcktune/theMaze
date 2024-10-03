@@ -37,25 +37,28 @@ Personne* readFile(){
     }
 
     
-    while(fscanf(file_personnes, "%s %s", 
-         (tablePersonnes)->nom, 
-         (tablePersonnes)->prenom 
-        //  tablePersonnes,
-        //  (tablePersonnes + nbr)->date.mois,
-        /*  (tablePersonnes + nbr)->date.annees*/)   != 0 || !feof(file_personnes)){
+    while((fscanf(file_personnes, "%s %s %d %d %d", 
+         (tablePersonnes + nbr)->nom, 
+         (tablePersonnes + nbr)->prenom,
+         &(tablePersonnes + nbr)->date.jour,
+         &(tablePersonnes + nbr)->date.mois,
+         &(tablePersonnes + nbr)->date.annees)   != EOF )){
 
-        printf("nom: %s\n", *(tablePersonnes + nbr)->nom);
-        printf("prenom: %s\n", *(tablePersonnes + nbr)->prenom);
+        printf("nom: %s\n", (tablePersonnes + nbr)->nom);
+        printf("prenom: %s\n", (tablePersonnes + nbr)->prenom);
+        printf("jour: %d\n", (tablePersonnes + nbr)->date.jour);
+        printf("mois: %d\n", (tablePersonnes + nbr)->date.mois);
+        printf("annees: %d\n", (tablePersonnes + nbr)->date.annees);
+        printf("____________________________________________________\n");
+
         nbr++;
-        // printf("jour: %d\n", tablePersonnes[nbr].date.jour);
-        // printf("mois: %d\n", tablePersonnes[nbr].date.mois);
-        // printf("annees: %d\n", tablePersonnes[nbr++].date.annees);
-     
+
     }
 
     fclose(file_personnes);
         
     return tablePersonnes;
+
 
 }
 
@@ -76,23 +79,39 @@ void getAnnees(){
 int main(){
     //getAnnees();
 
-    //Personne *pe = readFile();
-    Personne *p = malloc(sizeof(Personne) * 2);
-    FILE *file = fopen("personnes.txt", "r");
+    Personne *p = readFile();
+    printf("%s", (p + 2)->nom);
+    // Personne *p = malloc(sizeof(Personne));
+    // FILE *file = fopen("personnes.txt", "r");
     
-    if (file == NULL){
-        printf("error");
-        return (0);
-    }
-    int i;
-    fscanf(file, "%s", &p->nom);
-    fscanf(file, "%s", &p->prenom);
-    fscanf(file, "%d", &p->date.jour);
-    fscanf(file, "%d", &p->date.mois);
-    fscanf(file, "%d", &p->date.annees);
-    fscanf(file, "%s", &p->nom);
+    // if (file == NULL){
+    //     printf("error");
+    //     return (0);
+    // }
+    // int i;
 
-    printf("%d", *(p + 1)->nom);
+    // //retreaving the 4 elemnts
+    // fscanf(file, "%s", p->nom);
+    // fscanf(file, "%s", p->prenom);
+    // fscanf(file, "%d", &p->date.jour);
+    // fscanf(file, "%d", &p->date.mois);
+    // fscanf(file, "%d", &p->date.annees);
+    // //check
+    // printf("%d\n", p->date.annees);
+
+    //     printf("1 address : %p\n", &p);
+    // printf("1 value : %p\n", p);
+    
+    
+    // p = realloc(p, sizeof(Personne) * 2);
+    // fscanf(file, "%d", (p + 1)->date.annees);
+
+    // printf("2 addresse  : %p\n", &p+1);
+    // printf("2 value  : %p\n", (p+1));
+
+    
+
+ 
 
 
 

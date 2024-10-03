@@ -21,5 +21,8 @@ int main(void)
         SDL_RenderPresent(instance.gamesRenderer);
     }
     quit(&instance);
+
+
+    
     return (0);
 }
